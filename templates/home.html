@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+    <img src="{{ url_for('static', filename='pattern-top.png') }}" class="pattern-top">
+    
+    <h1>Welcome to EventBook</h1>
+    <p>Book Your Dream Events with Elegance & Style</p>
+    <a href="/add" class="btn">Create Your Event</a>
+    
+    <img src="{{ url_for('static', filename='pattern-bottom.png') }}" class="pattern-bottom">
+</div>
+{% endblock %}

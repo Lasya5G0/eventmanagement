@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ event.event_name }} - Event Detail</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .event-detail-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 800px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 40px;
+            color: #e74c3c;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        .feedback-list {
+            margin-top: 30px;
+        }
+
+        .feedback-list li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            list-style-type: none;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="event-detail-container">
+        <h2>{{ event.event_name }}</h2>
+        <img src="{{ url_for('static', filename=event.picture) }}" width="200"><br>
+        <p>Date: {{ event.start_date }} to {{ event.end_date }}</p>
+        <p>Time: {{ event.time }}</p>
+        <p>Organized by: {{ event.organizing }}</p>
+        <p>Tickets Available: {{ event.tickets_available }}</p>
+        <p>Fee: {{ event.fee_payment }}</p>
+
+        <h3>Submit Feedback</h3>
+        <form method="post" onsubmit="return validateFeedback()">
+            <textarea name="feedback" id="feedback" required placeholder="Write your feedback here..."></textarea><br>
+            <input type="submit" value="Submit Feedback">
+            <div class="error" id="feedback-error" style="color: red; margin-top: 10px;"></div>
+        </form>
+
+        <h4>Feedbacks:</h4>
+        <ul class="feedback-list">
+            {% for fb in event.feedbacks %}
+                <li>{{ fb }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+
+    <script>
+        function validateFeedback() {
+            const feedback = document.getElementById("feedback").value.trim();
+            const errorBox = document.getElementById("feedback-error");
+
+            if (feedback === "") {
+                errorBox.textContent = "Please write your feedback before submitting.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .user-dashboard-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            max-width: 100px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        ul li {
+            background-color: #f9f9f9;
+            padding: 8px;
+            margin-bottom: 6px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+            color: #3498db;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="user-dashboard-container">
+        <h2>User Dashboard</h2>
+        <h3>Available Events</h3>
+        <ul>
+            {% for event in events %}
+                <li><a href="{{ url_for('event_detail', event_id=event._id) }}">{{ event['event_name'] }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+
+</body>
+</html>

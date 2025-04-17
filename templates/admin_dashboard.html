@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .admin-dashboard-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        ul li {
+            background-color: #f9f9f9;
+            padding: 8px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+            color: #e74c3c;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <form method="post" enctype="multipart/form-data">
+            <label>Event Name:</label>
+            <input type="text" name="event_name" required>
+            <label>Start Date:</label>
+            <input type="date" name="start_date">
+            <label>End Date:</label>
+            <input type="date" name="end_date">
+            <label>Time:</label>
+            <input type="text" name="time">
+            <label>Organizing:</label>
+            <input type="text" name="organizing">
+            <label>Tickets Available:</label>
+            <input type="number" name="tickets_available">
+            <label>Fee Payment:</label>
+            <input type="text" name="fee_payment">
+            <label>Picture:</label>
+            <input type="file" name="picture" required>
+            <input type="submit" value="Create Event">
+        </form>
+
+        <h3>All Events</h3>
+        <ul>
+            {% for event in events %}
+                <li><a href="{{ url_for('event_detail', event_id=event._id) }}">{{ event['event_name'] }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+
+</body>
+</html>

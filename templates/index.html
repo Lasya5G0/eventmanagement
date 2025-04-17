@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Booking</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='db.gif') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .top-right-links {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .top-right-links a {
+            text-decoration: none;
+            color: white;
+            background-color: #2ecc71;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-right-links a:hover {
+            background-color: #27ae60;
+        }
+
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        p.description {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #ddd;
+            text-shadow: 1px 1px 6px #000;
+        }
+
+        .main-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-buttons a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top-right About & Contact -->
+    <div class="top-right-links">
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+
+    <div class="center-content">
+        <h1>Welcome to the Event Booking Platform</h1>
+        <p class="description">Book, host, and explore exciting events with ease.</p>
+        <div class="main-buttons">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+    </div>
+
+</body>
+</html>
